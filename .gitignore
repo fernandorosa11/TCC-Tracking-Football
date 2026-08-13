@@ -1,0 +1,32 @@
+# ===== Modelos e pesos (arquivos grandes) =====
+*.pt
+*.pth
+*.onnx
+*.engine
+
+# ===== Dataset e vídeos (arquivos grandes) =====
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.zip
+tracking/
+dataset/
+SoccerNet/
+runs/
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*.ipynb_checkpoints
+.venv/
+venv/
+env/
+
+# ===== Sistema / IDE =====
+.DS_Store
+.vscode/
+.idea/
+
+# ===== Exceção: mantém o GIF de demonstração =====
+!assets/tracking_demo.gif
