@@ -14,7 +14,7 @@
 
 ### O problema
 
-Detectar jogadores frame a frame é a parte fácil. O difícil é **manter o mesmo ID para o mesmo jogador** quando eles se cruzam, se sobrepõem, saem e voltam ao quadro. Cada troca de identidade (*ID switch*) quebra qualquer análise que dependa de trajetória — distância percorrida, mapa de calor, velocidade, posse.
+Detectar jogadores frame a frame é a parte fácil. O difícil é **manter o mesmo ID para o mesmo jogador** quando eles se cruzam, se sobrepõem, saem e voltam ao quadro. Cada troca de identidade (*ID switch*) quebra qualquer análise que dependa de trajetória como distância percorrida, mapa de calor, velocidade, posse.
 
 Este trabalho compara quatro estratégias de rastreamento multi-objeto sobre as mesmas detecções, medindo qual preserva melhor a identidade dos jogadores.
 
@@ -22,11 +22,11 @@ Este trabalho compara quatro estratégias de rastreamento multi-objeto sobre as 
 
 1. **Dados:** dataset **SoccerNet 2022** (desafio de tracking).
 2. **Detecção:** **YOLOv8** treinado para detectar jogadores, goleiros, árbitros e bola, com *data augmentation* (Albumentations).
-3. **Rastreamento:** as mesmas detecções são passadas por 4 algoritmos — **ByteTrack**, **StrongSORT**, **OC-SORT** e **DeepSORT** (via BoxMOT).
+3. **Rastreamento:** as mesmas detecções são passadas por 4 algoritmos — **ByteTrack**, **StrongSORT**, **OC-SORT** (via BoxMOT) e **DeepSORT**.
 4. **Avaliação:** metodologia em 3 fases, com separação de validação para evitar vazamento de dados (*data leakage*):
    - **Fase 1** — otimização do limiar de confiança da detecção;
    - **Fase 2** — sintonia fina dos hiperparâmetros de cada tracker;
-   - **Fase 3** — teste cego em sequências inéditas (ambiente real).
+   - **Fase 3** — teste cego em sequências inéditas do dataset.
 
 ### Resultados — Fase 3 (teste cego)
 
@@ -37,7 +37,7 @@ Este trabalho compara quatro estratégias de rastreamento multi-objeto sobre as 
 | OC-SORT     | 76,7      | 26.598 | 96.304  | 8.702 |
 | DeepSORT    | 65,3      | 85.867 | 106.051 | 4.209 |
 
-**Conclusão:** StrongSORT obteve a maior acurácia (MOTA 77,1%), com ByteTrack e OC-SORT praticamente empatados logo atrás. O DeepSORT ficou bem abaixo em MOTA — apesar de ter o menor número de trocas de identidade, acumula muito mais falsos positivos e negativos. A disputa real foi entre StrongSORT, ByteTrack e OC-SORT.
+**Conclusão:** StrongSORT obteve a maior acurácia (MOTA 77,1%), com ByteTrack e OC-SORT praticamente empatados logo atrás. O DeepSORT ficou bem abaixo em MOTA, apesar de ter o menor número de trocas de identidade, acumula muito mais falsos positivos e negativos. A disputa real foi entre StrongSORT, ByteTrack e OC-SORT.
 
 ### Stack
 
@@ -57,7 +57,7 @@ O notebook (`TCC_Rastreamento_Jogadores.ipynb`) foi desenvolvido no Google Colab
 ### Sobre
 
 TCC em Engenharia Elétrica (Ifes), defendido em 2026 com nota **98**.
-Autor: **Fernando** — interesse em visão computacional e ciência de dados aplicadas ao esporte.
+Autor: **Fernando Rosa** — interesse em visão computacional e ciência de dados aplicadas ao esporte.
 
 ---
 
@@ -113,4 +113,4 @@ The notebook (`TCC_Rastreamento_Jogadores.ipynb`) was built in Google Colab and 
 ### About
 
 Undergraduate thesis in Electrical Engineering (Ifes, Brazil), defended in 2026, graded **98/100**.
-Author: **Fernando** — interested in computer vision and data science applied to sports.
+Author: **Fernando Rosa** — interested in computer vision and data science applied to sports.
